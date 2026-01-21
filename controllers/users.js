@@ -41,7 +41,7 @@ const createUser = async (req, res) => {
     }
 };
 
-/*
+
 const updateUser = async (req, res) => {
     //#swagger.tags=['Users']
     const userId = new ObjectId(req.params.id);
@@ -50,9 +50,9 @@ const updateUser = async (req, res) => {
         lastName: req.body.lastName,
         email: req.body.email,
         username: req.body.username,
-        age: req.body.age,
+        age: Number(req.body.age),
         role: req.body.role,
-        active: req.body.active,
+        active: Boolean(req.body.active),
         createdAt: req.body.createdAt
     };
 
@@ -74,12 +74,12 @@ const deleteUser = async (req, res) => {
         res.status(500).json(response.error || 'Some error occurred while deleting the user')
     }
 };
-*/
+
 
 module.exports = {
     getAll,
     getSingle,
-    createUser
-    //updateUser,
-    //deleteUser
+    createUser,
+    updateUser,
+    deleteUser
 };

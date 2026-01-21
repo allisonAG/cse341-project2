@@ -22,6 +22,24 @@ Content-Type: application/json
     "createdAt": "2026-01-15"
 }
 
+### Put user 
+PUT http://localhost:3000/users/69710ff3ab63fdf666e04b11 HTTP/1.1 
+Content-Type: application/json
+
+{
+    "firstName": "Test Name", 
+    "lastName": "Test Last Name", 
+    "email": "test@example.com", 
+    "username": "Test Color", 
+    "age": 30,
+    "role": "user",
+    "active": true,
+    "createdAt": "2026-01-10"
+}
+
+### Delete user 
+DELETE http://localhost:3000/users/69710ff3ab63fdf666e04b11
+
 
 // Books
 ### Get all books 
@@ -43,3 +61,20 @@ Content-Type: application/json
     "pages": 414,
     "available": true
 }
+
+### Put book 
+PUT http://localhost:3000/books/69711cc20fe767971894a653 HTTP/1.1 
+Content-Type: application/json
+
+{
+    "title": "Test Title", 
+    "author": "Test Author", 
+    "isbn": "Test Isbn", 
+    "genre": "Test Genre", 
+    "publishedYear": 2005,
+    "pages": 400,
+    "available": true
+}
+
+### Delete contact 
+DELETE http://localhost:3000/books/697112220ca5e60ac63c1c4b
