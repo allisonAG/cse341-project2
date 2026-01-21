@@ -12,12 +12,16 @@ const getAll = async (req, res) => {
 
 const getSingle = async (req, res) => {
     //#swagger.tags=['Users']
-    const userId = new ObjectId(req.params.id);
-    const result = mongodb.getDatabase().db().collection('users').find({ _id: userId });
-    result.toArray().then((users) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(users);
-    });
+    
+    if (!ObjectId.isValid(req.params.id)) {
+        return res.status(400).json('Invalid user id');
+    }
+
+    const user = await mongodb.getDatabase().db().collection('users').findOne({ _id: new ObjectId(req.params.id) });
+    if (!user) {
+        return res.status(404).json('User not found');
+    }
+        res.status(200).json(user);
 };
 
 const createUser = async (req, res) => {
@@ -44,7 +48,11 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     //#swagger.tags=['Users']
-    const userId = new ObjectId(req.params.id);
+    
+    if (!ObjectId.isValid(req.params.id)) {
+        return res.status(400).json('Invalid user id');
+    }
+    
     const user = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -56,7 +64,7 @@ const updateUser = async (req, res) => {
         createdAt: req.body.createdAt
     };
 
-    const response = await mongodb.getDatabase().db().collection('users').replaceOne({ _id: userId }, user);
+    const response = await mongodb.getDatabase().db().collection('users').replaceOne({ _id: new ObjectId(req.params.id) }, user);
     if (response.modifiedCount > 0) {
         res.status(204).send();
     } else {
@@ -66,8 +74,11 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     //#swagger.tags=['Users']
-    const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db().collection('users').deleteOne({ _id: userId });
+    
+    if (!ObjectId.isValid(req.params.id)) {
+        return res.status(400).json('Invalid user id');
+    }
+    const response = await mongodb.getDatabase().db().collection('users').deleteOne({ _id: new ObjectId(req.params.id) });
     if (response.deletedCount > 0) {
         res.status(204).send();
     } else {

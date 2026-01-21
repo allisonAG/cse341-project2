@@ -12,12 +12,15 @@ const getAll = async (req, res) => {
 
 const getSingle = async (req, res) => {
     //#swagger.tags=['Books']
-    const bookId = new ObjectId(req.params.id);
-    const result = mongodb.getDatabase().db().collection('books').find({ _id: bookId });
-    result.toArray().then((books) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(books);
-    });
+    if (!ObjectId.isValid(req.params.id)) {
+        return res.status(400).json('Invalid book id');
+    }
+    const book = await mongodb.getDatabase().db().collection('books').findOne({ _id: new ObjectId(req.params.id) });
+    if (!book) {
+        return res.status(404).json('Book not found');
+    }
+        res.status(200).json(book);
+    
 };
 
 const createBook = async (req, res) => {
@@ -43,7 +46,10 @@ const createBook = async (req, res) => {
 
 const updateBook = async (req, res) => {
     //#swagger.tags=['Books']
-    const bookId = new ObjectId(req.params.id);
+    if (!ObjectId.isValid(req.params.id)) {
+        return res.status(400).json('Invalid book id');
+    }
+
     const book = {
         title: req.body.title,
         author: req.body.author,
@@ -54,7 +60,7 @@ const updateBook = async (req, res) => {
         available: Boolean(req.body.available)
     };
 
-    const response = await mongodb.getDatabase().db().collection('books').replaceOne({ _id: bookId }, book);
+    const response = await mongodb.getDatabase().db().collection('books').replaceOne({ _id: new ObjectId(req.params.id) }, book);
     if (response.modifiedCount > 0) {
         res.status(204).send();
     } else {
@@ -64,8 +70,11 @@ const updateBook = async (req, res) => {
 
 const deleteBook = async (req, res) => {
     //#swagger.tags=['Books']
-    const bookId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db().collection('books').deleteOne({ _id: bookId });
+    if (!ObjectId.isValid(req.params.id)) {
+        return res.status(400).json('Invalid user id');
+    }
+
+    const response = await mongodb.getDatabase().db().collection('books').deleteOne({ _id: new ObjectId(req.params.id) });
     if (response.deletedCount > 0) {
         res.status(204).send();
     } else {
