@@ -1,0 +1,45 @@
+//LOCALHOST
+
+// Users
+### Get all users 
+GET http://localhost:3000/users
+
+### Get contact by Id 
+GET http://localhost:3000/users/697025ecfeebdf2f0dcfa162
+
+### Create user 
+POST http://localhost:3000/users HTTP/1.1 
+Content-Type: application/json
+
+{
+    "firstName": "Test Name", 
+    "lastName": "Test Last Name", 
+    "email": "test@example.com", 
+    "username": "Test Color", 
+    "age": 25,
+    "role": "user",
+    "active": true,
+    "createdAt": "2026-01-15"
+}
+
+
+// Books
+### Get all books 
+GET http://localhost:3000/books
+
+### Get book by Id 
+GET http://localhost:3000/books/69702546feebdf2f0dcfa15d
+
+### Create book 
+POST http://localhost:3000/books HTTP/1.1 
+Content-Type: application/json
+
+{
+    "title": "Test Title", 
+    "author": "Test Author", 
+    "isbn": "Test Isbn", 
+    "genre": "Test Genre", 
+    "publishedYear": 2009,
+    "pages": 414,
+    "available": true
+}
