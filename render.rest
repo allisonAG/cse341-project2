@@ -16,7 +16,7 @@ Content-Type: application/json
     "lastName": "Test Last Name", 
     "email": "test@example.com", 
     "username": "Test Username", 
-    "age": 25,
+    "age": 45,
     "role": "user",
     "active": true,
     "createdAt": "2026-01-15"
@@ -31,7 +31,7 @@ Content-Type: application/json
     "lastName": "Test Last Name", 
     "email": "test@example.com", 
     "username": "Test Username", 
-    "age": 30,
+    "age": 22,
     "role": "user",
     "active": true,
     "createdAt": "2026-01-10"
