@@ -5,11 +5,10 @@
     "description": "Books Api",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341-project2-qtbu.onrender.com",
   "basePath": "/",
   "schemes": [
-    "https",
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
