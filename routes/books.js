@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const booksController = require('../controllers/books');
-const validation = require('../middleware/validateBook');
+const validation = require('../middlewares/validateBook');
 
 router.get('/', booksController.getAll);
 router.get('/:id', booksController.getSingle);

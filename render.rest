@@ -1,11 +1,12 @@
 //LOCALHOST
 
 // Users
+
 ### Get all users 
 GET http://localhost:3000/users
 
 ### Get contact by Id 
-GET http://localhost:3000/users/6971463d84302bc1a853f995
+GET http://localhost:3000/users/697025ecfeebdf2f0dcfa163
 
 ### Create user 
 POST http://localhost:3000/users HTTP/1.1 
@@ -23,7 +24,7 @@ Content-Type: application/json
 }
 
 ### Put user 
-PUT http://localhost:3000/users/6971463d84302bc1a853f995 HTTP/1.1 
+PUT http://localhost:3000/users/69716112fe3e7bd87e3c1fa8 HTTP/1.1 
 Content-Type: application/json
 
 {
@@ -31,14 +32,14 @@ Content-Type: application/json
     "lastName": "Test Last Name", 
     "email": "test@example.com", 
     "username": "Test Username", 
-    "age": 22,
+    "age": 30,
     "role": "user",
     "active": true,
     "createdAt": "2026-01-10"
 }
 
 ### Delete user 
-DELETE http://localhost:3000/users/6971463d84302bc1a853f995
+DELETE http://localhost:3000/users/69716112fe3e7bd87e3c1fa8
 
 
 // Books
@@ -63,7 +64,7 @@ Content-Type: application/json
 }
 
 ### Put book 
-PUT http://localhost:3000/books/69702546feebdf2f0dcfa15d HTTP/1.1 
+PUT http://localhost:3000/books/6973e6bbe3c69930e3fe8a80 HTTP/1.1 
 Content-Type: application/json
 
 {
@@ -71,10 +72,10 @@ Content-Type: application/json
     "author": "Test Author", 
     "isbn": "Test Isbn", 
     "genre": "Test Genre", 
-    "publishedYear": 2005,
+    "publishedYear": 2002,
     "pages": 400,
     "available": true
 }
 
 ### Delete contact 
-DELETE http://localhost:3000/books/69714d5b238e32fe4d35682d
+DELETE http://localhost:3000/books/6973e6bbe3c69930e3fe8a80

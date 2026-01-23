@@ -1,15 +1,14 @@
 const validator = require('../helpers/validate');
 
-const saveUser = (req, res, next) => {
+const saveBook = (req, res, next) => {
     const validationRule = {
-        firstName: 'required|string',
-        lastName: 'required|string',
-        email: 'required|email',
-        username: 'required|string',
-        age: 'required|number',
-        role: 'required|string',
-        active: 'required|boolean',
-        createdAt: 'required|string'
+        title: 'required|string',
+        author: 'required|string',
+        isbn: 'required|string',
+        genre: 'required|string',
+        pages: 'required|integer',
+        publishedYear: 'required|integer',
+        available: 'required|boolean'
     };
     validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {
@@ -25,5 +24,5 @@ const saveUser = (req, res, next) => {
 };
 
 module.exports = {
-    saveUser
+    saveBook
 };
