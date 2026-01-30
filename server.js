@@ -48,7 +48,7 @@ passport.deserializeUser((user, done) => {
 app.get('/', (req, res) => {
     res.send(
         req.session.user
-            ? `Logged in as ${req.session.user.displayName}`
+            ? `Logged in as ${req.session.user.username}`
             : 'Logged Out'
     );
 });
